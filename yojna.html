@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>योजना माहिती - खामगांव नगर परिषद</title>
+
+  <!-- Marathi Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5); /* Light blue to light purple gradient */
+      color: #333;
+      line-height: 1.7;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 35px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      border: 2px solid #bbdefb; /* Light blue border */
+      animation: slideIn 0.8s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #2196f3; /* Blue color for schemes */
+      font-size: 34px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      animation: bounceIn 1s ease-out;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 35px;
+      color: #424242;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      background: #f8f9fa; /* Light gray background for form */
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #e3f2fd;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #374151;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    input, select, textarea {
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 2px solid #bbdefb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2196f3;
+      box-shadow: 0 0 0 3px rgba(33,150,243,0.2);
+      transform: scale(1.02);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    button {
+      padding: 16px;
+      background: linear-gradient(to right, #2196f3, #0d47a1); /* Blue gradient */
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(33,150,243,0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(33,150,243,0); }
+      100% { box-shadow: 0 0 0 0 rgba(33,150,243,0); }
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(33,150,243,0.4);
+      background: linear-gradient(to right, #0d47a1, #2196f3);
+    }
+
+    .scheme-info {
+      margin-top: 35px;
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5); /* Matching gradient */
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #bbdefb;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .scheme-info p {
+      text-align: left;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #424242;
+    }
+
+    .scheme-info ul {
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+      }
+      .nav-buttons {
+        display: none;
+      }
+      .print-btn {
+        display: none;
+      }
+    }
+
+    /* Navigation Buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 1.2s both;
+    }
+
+    .nav-buttons a, .print-btn {
+      padding: 12px 25px;
+      background: linear-gradient(to right, #2196f3, #0d47a1);
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .nav-buttons a:hover, .print-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(33,150,243,0.4);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #ffffff;
+      border-top: 3px solid #2196f3; /* Blue border */
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-out 1s both;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        margin: 20px;
+        padding: 25px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="content">
+    <h1>योजना माहिती</h1>
+    <p>खामगांव नगर परिषद अंतर्गत चालू योजना किंवा नवीन योजनांसाठी येथे माहिती मिळवा किंवा अर्ज करा.</p>
+
+    <form action="#" method="post">
+      <label for="name">नाव</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">ईमेल</label>
+      <input type="email" id="email" name="email">
+
+      <label for="phone">फोन नंबर</label>
+      <input type="tel" id="phone" name="phone">
+
+      <label for="scheme-type">योजना प्रकार</label>
+      <select id="scheme-type" name="scheme-type" required>
+        <option value="">निवडा</option>
+        <option value="health">आरोग्य योजना</option>
+        <option value="education">शिक्षण योजना</option>
+        <option value="welfare">कल्याण योजना</option>
+        <option value="other">इतर योजना</option>
+      </select>
+
+      <label for="message">आपला संदेश / अर्ज</label>
+      <textarea id="message" name="message" placeholder="आपला संदेश किंवा अर्ज येथे लिहा..." required></textarea>
+
+      <button type="submit">साबमिट करा</button>
+    </form>
+
+    <!-- Scheme Info -->
+    <div class="scheme-info">
+      <p><strong>📌 उदाहरणार्थ चालू योजना:</strong></p>
+      <ul>
+        <li>महात्मा गांधी आरोग्य योजना</li>
+        <li>शिक्षण सहाय्य योजना</li>
+        <li>गरिब कल्याण योजना</li>
+      </ul>
+      <p>अधिक माहितीसाठी कृपया संपर्क साधा किंवा वरील फॉर्म भरा.</p>
+    </div>
+
+    <!-- Print and Navigation Buttons -->
+    <div class="nav-buttons">
+      
+      <a href="index.html">🏠 मुख्य पृष्ठ</a>
+     
+    </div>
+
+  </main>
+
+</body>
+</html>
