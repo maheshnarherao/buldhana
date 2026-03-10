@@ -299,6 +299,100 @@ object-fit:cover;
 border-bottom:4px solid #2196f3;
 }
 
+/* Services Section Styles */
+.services-section {
+    padding: 50px 20px;
+    background: linear-gradient(135deg, rgba(227, 242, 253, 0.5), rgba(243, 229, 245, 0.5));
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    animation: slideUp 0.6s ease-out both;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(33, 150, 243, 0.25);
+    border-color: #2196f3;
+    background: linear-gradient(135deg, rgba(227, 242, 253, 0.3), rgba(255, 255, 255, 1));
+}
+
+.service-card h3 {
+    color: #2196f3;
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.service-card p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .service-card {
+        padding: 20px 15px;
+    }
+    .service-card h3 {
+        font-size: 18px;
+    }
+    .service-card p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section {
+        padding: 30px 10px;
+    }
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .service-card {
+        padding: 15px 10px;
+    }
+}
+
     </style>
 </head>
 
@@ -324,6 +418,28 @@ border-bottom:4px solid #2196f3;
     <div onclick="openPage('yojna')">योजना</div>
     <div onclick="openPage('sampark')">संपर्क</div>
 </nav>
+
+<!-- Services Section -->
+<section class="services-section">
+    <div class="services-container">
+        <div class="service-card" onclick="openPage('takrar')">
+            <h3>तक्रार</h3>
+            <p>आपल्या तक्रारी सहजपणे येथे नोंदवा आणि अलघायात उपचार तपासा.</p>
+        </div>
+        <div class="service-card" onclick="openPage('magni')">
+            <h3>मागणी</h3>
+            <p>विविध मागण्या, परवानग्या आणि सनदपत्रे करा.</p>
+        </div>
+        <div class="service-card" onclick="openPage('yojna')">
+            <h3>योजना</h3>
+            <p>नगर परिषद द्वारे जारीकृत योजना आणि लाभांची माहिती.</p>
+        </div>
+        <div class="service-card" onclick="openPage('sampark')">
+            <h3>संपर्क</h3>
+            <p>संपर्क माहिती आणि अधिक मस्तोहियों येथे.</p>
+        </div>
+    </div>
+</section>
 
     <script>
         function openPage(pageName) {
