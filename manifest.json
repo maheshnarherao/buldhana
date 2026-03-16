@@ -1,21 +1,23 @@
 {
   "name": "बुलढाणा नगर परिषद",
   "short_name": "नगर परिषद",
-  "start_url": "index.html",
+  "description": "बुलढाणा नगर परिषद सरकारी सेवांसाठी प्रोग्रेसिव्ह वेब अॅप",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0d47a1",
   "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "Narendra-Modi.webp",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "icon-512.png",
+      "src": "DevendraFadnavis.webp",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/webp"
     }
   ]
 }
