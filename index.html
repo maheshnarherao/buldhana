@@ -395,28 +395,7 @@ border-bottom:4px solid #2196f3;
     }
 }
 
-/* Add to Home Screen floating install button */
-#a2hs-button {
-  position: fixed;
-  right: 18px;
-  bottom: 20px;
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  background: #2196f3;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-#a2hs-button:hover { transform: scale(1.05); }
-#a2hs-button span { display: none; }
+
 
 @media (max-width:768px) {
   #a2hs-button { display: none; }
@@ -449,9 +428,7 @@ border-bottom:4px solid #2196f3;
     <div onclick="openPage('sampark')">संपर्क</div>
 </nav>
 
-<button id="a2hs-button" aria-label="Add to Home Screen" title="Add to Home Screen">+
-  <span>Add to Home Screen</span>
-</button>
+
 
 <!-- Services Section -->
 <section class="services-section">
@@ -524,6 +501,20 @@ border-bottom:4px solid #2196f3;
                     console.error('Service Worker registration failed:', error);
                 });
         }
+        
+
+window.addEventListener('beforeinstallprompt', (e) => {
+
+  e.preventDefault();
+
+  // direct install popup
+  setTimeout(()=>{
+      e.prompt();
+  },1500);
+
+});
+
+
     </script>
     
     <footer>
