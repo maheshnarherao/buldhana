@@ -1,4 +1,4 @@
- navigator.serviceWorker.register('./sw.js');
+
 const CACHE_NAME = 'buldhana-app-cache-v1';
 const toCache = [
   './',
