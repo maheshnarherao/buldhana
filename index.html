@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -423,6 +424,52 @@ border-bottom:4px solid #2196f3;
   #a2hs-button.show { display: flex; }
 }
 
+.install-toast {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 16px;
+  z-index: 2000;
+  background: #333;
+  color: #fff;
+  border-radius: 12px;
+  padding: 14px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.install-toast.show {
+  display: flex;
+}
+
+.install-toast .toast-actions {
+  display: flex;
+  gap: 6px;
+  margin-left: 10px;
+}
+
+.install-toast button {
+  border: none;
+  background: #fff;
+  color: #111;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.install-toast button#install-dismiss {
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 6px;
+}
+
     </style>
 </head>
 
@@ -453,6 +500,17 @@ border-bottom:4px solid #2196f3;
   <span>Add to Home Screen</span>
 </button>
 
+<div id="install-toast" class="install-toast" aria-live="polite">
+  <div>
+    <strong>Install App</strong><br>
+    साइट इंस्टॉल करा आणि जलद प्रवेश मिळवा
+  </div>
+  <div class="toast-actions">
+    <button id="install-now">Install</button>
+    <button id="install-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+</div>
+
 <!-- Services Section -->
 <section class="services-section">
     <div class="services-container">
@@ -481,37 +539,45 @@ border-bottom:4px solid #2196f3;
         }
 
         // PWA install prompt handling
-        let deferredInstallPrompt;
         const a2hsButton = document.getElementById('a2hs-button');
+        const installToast = document.getElementById('install-toast');
+        const installNow = document.getElementById('install-now');
+        const installDismiss = document.getElementById('install-dismiss');
+        let deferredInstallPrompt = null;
 
-        // Listen for the beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
             deferredInstallPrompt = event;
-
-            // Show button only on small/mobile screens after prompt is available
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                a2hsButton.classList.add('show');
-            }
+            showInstallUI();
         });
 
-        a2hsButton.addEventListener('click', async () => {
+        function showInstallUI() {
             if (!deferredInstallPrompt) return;
+            a2hsButton.classList.add('show');
+            installToast.classList.add('show');
+        }
 
-            deferredInstallPrompt.prompt();
-            const choiceResult = await deferredInstallPrompt.userChoice;
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredInstallPrompt = null;
+        function hideInstallUI() {
+            installToast.classList.remove('show');
             a2hsButton.classList.remove('show');
-        });
+        }
+
+        async function promptInstall() {
+            if (!deferredInstallPrompt) return;
+            deferredInstallPrompt.prompt();
+            const { outcome } = await deferredInstallPrompt.userChoice;
+            console.log('Install choice:', outcome);
+            deferredInstallPrompt = null;
+            hideInstallUI();
+        }
+
+        installNow.addEventListener('click', promptInstall);
+        installDismiss.addEventListener('click', hideInstallUI);
+        a2hsButton.addEventListener('click', promptInstall);
 
         window.addEventListener('appinstalled', () => {
             console.log('PWA installed');
-            a2hsButton.classList.remove('show');
+            hideInstallUI();
         });
 
         // Service worker registration
@@ -531,4 +597,5 @@ border-bottom:4px solid #2196f3;
         सर्व हक्क राखीव 
     </footer>
 
+</body>
 </html>
