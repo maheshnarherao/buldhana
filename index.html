@@ -395,7 +395,10 @@ border-bottom:4px solid #2196f3;
 
     </style>
 </head>
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d47a1">
+<link rel="apple-touch-icon" href="icon-192.png">
+https://yourwebsite.com
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
 
@@ -451,6 +454,18 @@ border-bottom:4px solid #2196f3;
        
         सर्व हक्क राखीव 
     </footer>
-
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js')
+    .then(function(registration) {
+      console.log("ServiceWorker registered");
+    })
+    .catch(function(err) {
+      console.log("ServiceWorker failed: ", err);
+    });
+  });
+}
+</script>
 </body>
 </html>
