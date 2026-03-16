@@ -32,4 +32,6 @@ self.addEventListener('fetch', event => {
       return cached || fetch(event.request);
     })
   );
+  navigator.serviceWorker.register('./sw.js');
 });
+
