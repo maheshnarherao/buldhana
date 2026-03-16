@@ -530,6 +530,13 @@ border-bottom:4px solid #2196f3;
        
         सर्व हक्क राखीव 
     </footer>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+  .then(function() {
+    console.log("SW registered");
+  });
+}
+</script>
 </body>
 </html>
