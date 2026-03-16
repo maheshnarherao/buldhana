@@ -8,17 +8,6 @@ const toCache = [
   './Narendra-Modi.webp',
   './DevendraFadnavis.webp'
 ];
-self.addEventListener("install", (event) => {
-  console.log("Service Worker Installed");
-});
-
-self.addEventListener("fetch", (event) => {});
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(toCache))
-  );
-});
 
 self.addEventListener('activate', event => {
   event.waitUntil(
