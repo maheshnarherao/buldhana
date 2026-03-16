@@ -1,3 +1,4 @@
+ navigator.serviceWorker.register('./sw.js');
 const CACHE_NAME = 'buldhana-app-cache-v1';
 const toCache = [
   './',
@@ -32,6 +33,6 @@ self.addEventListener('fetch', event => {
       return cached || fetch(event.request);
     })
   );
-  navigator.serviceWorker.register('./sw.js');
+ 
 });
 
